@@ -114,6 +114,21 @@ app.get('**', (req, res, next) => {
 });
 
 /**
+ * Global Express error handler to ensure safe string logging and responses.
+ */
+app.use((err: unknown, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  const safeToString = (e: unknown): string => {
+    if (typeof e === 'string') return e;
+    if (e instanceof Error) return e.stack || e.message || String(e);
+    try { return JSON.stringify(e); } catch { return String(e); }
+  };
+  const message = safeToString(err);
+  // Log as string to avoid passing undefined to Node internals
+  console.error(message);
+  res.status(500).send('Internal Server Error');
+});
+
+/**
  * Start the server if this module is the main entry point.
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
  */
