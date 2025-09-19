@@ -1,0 +1,49 @@
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - 64px);
+  background: #f9fafb;
+}
+
+.content {
+  padding: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat( auto-fill, minmax(260px, 1fr) );
+  gap: 12px;
+}
+
+.empty {
+  display: grid;
+  place-items: center;
+  height: 40vh;
+}
+.empty-card {
+  background: #ffffff;
+  border: 1px solid rgba(17,24,39,0.08);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 10px 22px rgba(37,99,235,0.08);
+}
+
+.editor-container .backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(17,24,39,0.35);
+}
+.editor-modal {
+  position: fixed;
+  inset: 10% 10% auto 10%;
+  background: transparent;
+}
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .editor-modal {
+    inset: 5% 4% auto 4%;
+  }
+}

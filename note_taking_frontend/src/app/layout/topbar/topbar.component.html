@@ -1,0 +1,25 @@
+<header class="topbar">
+  <div class="left">
+    <div class="brand">
+      <div class="logo">📝</div>
+      <span class="title">Secure Notes</span>
+    </div>
+    <div class="search">
+      <input type="text" [(ngModel)]="query" (input)="onSearchChange()" placeholder="Search notes..." />
+    </div>
+  </div>
+  <div class="right" *ngIf="user() as u">
+    <button class="primary" (click)="addNote.emit()">+ New Note</button>
+    <div class="profile">
+      <img *ngIf="u.avatarUrl; else initials" [src]="u.avatarUrl" alt="avatar" />
+      <ng-template #initials>
+        <div class="avatar">{{ avatarInitial(u) }}</div>
+      </ng-template>
+      <div class="info">
+        <div class="name">{{ u.name }}</div>
+        <div class="email">{{ u.email }}</div>
+      </div>
+    </div>
+    <button class="logout" (click)="onLogout()">Logout</button>
+  </div>
+</header>

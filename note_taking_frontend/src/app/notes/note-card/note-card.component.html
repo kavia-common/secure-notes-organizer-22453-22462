@@ -1,0 +1,13 @@
+<article class="card" (click)="open.emit(note)">
+  <header class="head">
+    <h3 class="title">{{ note.title || 'Untitled' }}</h3>
+    <button class="pin" (click)="$event.stopPropagation(); togglePin.emit(note)" [title]="note.pinned ? 'Unpin' : 'Pin'">
+      {{ note.pinned ? '📌' : '📍' }}
+    </button>
+  </header>
+  <div class="content">{{ note.content }}</div>
+  <footer class="foot">
+    <span class="date">{{ note.updatedAt | date:'mediumDate' }}</span>
+    <button class="delete" (click)="$event.stopPropagation(); remove.emit(note)">Delete</button>
+  </footer>
+</article>

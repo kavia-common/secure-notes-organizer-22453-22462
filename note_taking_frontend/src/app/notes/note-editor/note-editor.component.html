@@ -1,0 +1,8 @@
+<div class="editor">
+  <input class="title" placeholder="Title" [(ngModel)]="note.title" />
+  <textarea class="content" placeholder="Write your secure note..." [(ngModel)]="note.content" rows="10"></textarea>
+  <div class="actions">
+    <button class="save" (click)="onSubmit()">Save</button>
+    <button class="cancel" (click)="cancel.emit()">Cancel</button>
+  </div>
+</div>

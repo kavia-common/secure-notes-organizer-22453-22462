@@ -1,0 +1,17 @@
+<aside class="sidebar">
+  <div class="section-header">Categories</div>
+  <button class="item" [class.active]="selectedCategoryId === null" (click)="onSelect(null)">
+    <span class="dot all"></span> All Notes
+  </button>
+  <div class="list">
+    <button class="item" *ngFor="let c of categories" [class.active]="selectedCategoryId === c.id" (click)="onSelect(c.id)">
+      <span class="dot" [style.background]="c.color || '#2563EB'"></span>
+      <span class="name">{{ c.name }}</span>
+      <span class="count" *ngIf="c.count !== undefined">{{ c.count }}</span>
+    </button>
+  </div>
+  <div class="new-category">
+    <input placeholder="New category" [(ngModel)]="newCategoryName" />
+    <button class="add" (click)="add()">Add</button>
+  </div>
+</aside>

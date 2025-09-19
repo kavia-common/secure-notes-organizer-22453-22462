@@ -1,0 +1,25 @@
+<app-topbar (search)="onSearch($event)" (addNote)="openEditor()"></app-topbar>
+
+<div class="layout">
+  <app-sidebar [selectedCategoryId]="categoryId()" (selectCategory)="onSelectCategory($event)"></app-sidebar>
+
+  <main class="content">
+    <section class="grid">
+      <app-note-card *ngFor="let n of filtered()" [note]="n" (open)="openEditor($event)" (remove)="remove($event)" (togglePin)="togglePin($event)"></app-note-card>
+    </section>
+
+    <section *ngIf="filtered().length === 0" class="empty">
+      <div class="empty-card">
+        <h3>No notes yet</h3>
+        <p>Create your first note using the “New Note” button.</p>
+      </div>
+    </section>
+
+    <section class="editor-container" *ngIf="editing() as e">
+      <div class="backdrop" (click)="editing.set(null)"></div>
+      <div class="editor-modal">
+        <app-note-editor [note]="e" (save)="saveEditor($event)" (cancel)="editing.set(null)"></app-note-editor>
+      </div>
+    </section>
+  </main>
+</div>
